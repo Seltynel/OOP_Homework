@@ -16,7 +16,8 @@ class Student:
         else:
                 return 'Ошибка'
     def __str__(self):
-        pass
+        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.surname}\nКурсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.finished_courses}'
+        return res
 
         
 class Mentor:
@@ -27,6 +28,11 @@ class Mentor:
                     
 class Lecturer(Mentor):
     grades = {}
+    average = grades.values()
+    def __str__(self):
+        # average = sum(Lecturer.grades.values())
+        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average}'
+        return res
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -57,7 +63,6 @@ cool_lecturer = Lecturer('Vasya', 'Pupkin')
 cool_lecturer.courses_attached += ['Python']
 
 best_student.rate_lecturer(cool_lecturer, 'Python', 10)
-best_student.rate_lecturer(cool_lecturer, 'Python', 10)
 
-# print(cool_lecturer.grades)
-print(cool_reviewer)
+print(best_student)
+# print(cool_lecturer)
