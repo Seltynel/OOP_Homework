@@ -63,6 +63,21 @@ def _average(grades):
     for element in grades.values():
         average = sum(element)/len(element)
     return average
+
+def _average_stud(students, course):
+    if isinstance(students, Student):
+        for element in students:
+            if course in element.grades.keys():
+                avg = students.grades[course]
+            return avg
+    else:
+            return 'Ошибка'
+    
+
+def _average_lect(lecturers, course):
+    for element in grades.values():
+        average = sum(element)/len(element)
+    return average
  
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
@@ -96,4 +111,4 @@ best_student.rate_lecturer(best_lecturer, 'Python', 10)
 best_student.rate_lecturer(best_lecturer, 'Python', 5)
 best_student.rate_lecturer(best_lecturer, 'Python', 4)
 
-print(best_student)
+print(_average_stud(cool_student, 'Python'))
