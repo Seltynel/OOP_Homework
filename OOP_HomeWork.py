@@ -16,7 +16,7 @@ class Student:
         else:
                 return 'Ошибка'
     def __str__(self):
-        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.surname}\nКурсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.finished_courses}'
+        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {_average(self.grades)}\nКурсы в процессе изучения: {self.courses_in_progress}\nЗавершенные курсы: {self.finished_courses}'
         return res
 
         
@@ -28,10 +28,8 @@ class Mentor:
                     
 class Lecturer(Mentor):
     grades = {}
-    average = grades.values()
     def __str__(self):
-        # average = sum(Lecturer.grades.values())
-        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average}'
+        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {_average(Lecturer.grades)}'
         return res
 
 class Reviewer(Mentor):
@@ -46,6 +44,11 @@ class Reviewer(Mentor):
     def __str__(self):
         res = f'Имя: {self.name}\nФамилия: {self.surname}'
         return res
+    
+def _average(grades):
+    for element in grades.values():
+        avgerage = sum(element)/len(element)
+    return avgerage
  
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
@@ -54,15 +57,15 @@ cool_reviewer = Reviewer('Some', 'Buddy')
 cool_reviewer.courses_attached += ['Python']
  
 cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
+cool_reviewer.rate_hw(best_student, 'Python', 4)
+cool_reviewer.rate_hw(best_student, 'Python', 9)
  
-# print(best_student.grades)
 
 cool_lecturer = Lecturer('Vasya', 'Pupkin')
 cool_lecturer.courses_attached += ['Python']
 
 best_student.rate_lecturer(cool_lecturer, 'Python', 10)
+best_student.rate_lecturer(cool_lecturer, 'Python', 9)
+best_student.rate_lecturer(cool_lecturer, 'Python', 5)
 
 print(best_student)
-# print(cool_lecturer)
